@@ -4,7 +4,7 @@ import {createStackNavigator} from '@react-navigation/stack';
 
 import Main from './pages/main';
 import Login from './pages/login';
-import User from './pages/user';
+import Cadastro from './pages/cadastro';
 
 const Stack = createStackNavigator();
 
@@ -28,10 +28,10 @@ export default function Routes() {
             }}
           />
         <Stack.Screen
-          name="main"
-          component={Main}
+          name="cadastro"
+          component={Cadastro}
           options={{
-            title: 'GitHub VIEWER',
+            title: 'Cadastro de Usuários',
             headerTitleAlign: 'center',
             headerLeft: null,
             headerStyle: {
@@ -44,11 +44,12 @@ export default function Routes() {
           }}
         />
         <Stack.Screen
-          name="user"
-          component={User}
+          name="main"
+          component={Main}
           options={{
-            title: 'Perfil do Usuário',
+            title: 'GitHub VIEWER',
             headerTitleAlign: 'center',
+            headerLeft: null,
             headerStyle: {
               backgroundColor: '#3498db',
             },
