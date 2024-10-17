@@ -8,15 +8,41 @@ export default () => {
   const [coords, setCoords] = useState(null);
 
   useEffect(() => {
-    ( async function loadPosition(){
-        const result = requestMultiple(
-            [
-                PERMISSIONS.ANDROID.ACCESS_FINE_LOCATION,
-                PERMISSIONS.ANDROID.ACCESS_COARSE_LOCATION,
-                PERMISSIONS.ANDROID.ACCESS_BACKGROUND_LOCATION,
-            ]
-        ) 
-    })
+    (async function loadPosition() {
+      const result = requestMultiple([
+        PERMISSIONS.ANDROID.ACCESS_FINE_LOCATION,
+        PERMISSIONS.ANDROID.ACCESS_BACKGROUND_LOCATION,
+      ]).then(statuses => {
+        const statusFine = statuses[PERMISSIONS.ANDROID.ACCESS_FINE_LOCATION];
+        const statusBack =
+          statuses[PERMISSIONS.ANDROID.ACCESS_BACKGROUND_LOCATION];
+        if (Platform.Version < 29) {
+          if (statusFine == 'granted') {
+            return true;
+          } else {
+            setErrorMsg('Usuário não aceitou a solicitação de uso do GPS');
+          }
+        }
+        if (statusFine == 'granted' && statusBack == 'granted') {
+          return true;
+        } else {
+          setErrorMsg('Usuário não aceitou a solicitação de uso do GPS');
+        }
+      });
+      if(result){
+        await Geolocation.getCurrentPosition(
+          ({coords}) => {
+            setCoords({
+              latitude: coords.latitude,
+              longitude: coords.longitude,
+            })
+          }, (error) => {
+            setErrorMsg('Não foi possível obter a localização')
+          } , {}
+        )
+      }
+      
+    })();
   }, []);
 
   return {coords, errorMsg};
