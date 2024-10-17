@@ -29,19 +29,20 @@ export default () => {
           setErrorMsg('Usuário não aceitou a solicitação de uso do GPS');
         }
       });
-      if(result){
+      if (result) {
         await Geolocation.getCurrentPosition(
           ({coords}) => {
             setCoords({
               latitude: coords.latitude,
               longitude: coords.longitude,
-            })
-          }, (error) => {
-            setErrorMsg('Não foi possível obter a localização')
-          } , {}
-        )
+            });
+          },
+          error => {
+            setErrorMsg('Não foi possível obter a localização.');
+          },
+          {enableHighAccuracy: true, timeout: 10000, maximumAge: 1000},
+        );
       }
-      
     })();
   }, []);
 
