@@ -3,8 +3,8 @@ import MapView from 'react-native-maps';
 import useLocation from '../hooks/useLocation';
 
 export default function Main({navigation}) {
-  const [latitude, setLatitude] = useState(-20.398259);
-  const [longitude, setLongitude] = useState(-43.507726);
+  const [latitude, setLatitude] = useState(-20.5149138);
+  const [longitude, setLongitude] = useState(-47.4006943);
 
   const {coords, errorMsg} = useLocation();
 
