@@ -1,6 +1,7 @@
 import {useState, useEffect} from 'react';
 import {requestMultiple, PERMISSIONS} from 'react-native-permissions';
-import Geolocation from 'react-native-geolocation-service';
+// import Geolocation from 'react-native-geolocation-service';
+import Geolocation from '@react-native-community/geolocation';
 import {Platform} from 'react-native';
 
 export default () => {
