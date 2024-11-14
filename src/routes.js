@@ -5,6 +5,7 @@ import {createStackNavigator} from '@react-navigation/stack';
 import Main from './pages/main';
 import Login from './pages/login';
 import Cadastro from './pages/cadastro';
+import Camera from './pages/camera';
 
 const Stack = createStackNavigator();
 
@@ -12,21 +13,21 @@ export default function Routes() {
   return (
     <NavigationContainer>
       <Stack.Navigator>
-          <Stack.Screen
-            name="login"
-            component={Login}
-            options={{
-              title: 'LOGIN',
-              headerTitleAlign: 'center',
-              headerStyle: {
-                backgroundColor: '#3498db',
-              },
-              headerTitleStyle: {
-                fontWeight: 'bold',
-                color: '#fff',
-              },
-            }}
-          />
+        <Stack.Screen
+          name="login"
+          component={Login}
+          options={{
+            title: 'LOGIN',
+            headerTitleAlign: 'center',
+            headerStyle: {
+              backgroundColor: '#3498db',
+            },
+            headerTitleStyle: {
+              fontWeight: 'bold',
+              color: '#fff',
+            },
+          }}
+        />
         <Stack.Screen
           name="cadastro"
           component={Cadastro}
@@ -47,6 +48,21 @@ export default function Routes() {
           component={Main}
           options={{
             title: 'GEOLOCALIZAÇÃO',
+            headerTitleAlign: 'center',
+            headerStyle: {
+              backgroundColor: '#3498db',
+            },
+            headerTitleStyle: {
+              fontWeight: 'bold',
+              color: '#fff',
+            },
+          }}
+        />
+        <Stack.Screen
+          name="camera"
+          component={Camera}
+          options={{
+            title: 'CAMERA',
             headerTitleAlign: 'center',
             headerStyle: {
               backgroundColor: '#3498db',
